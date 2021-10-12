@@ -1,5 +1,8 @@
 <template>
   <v-container>
+    <v-row justify="center">
+    <h1>hello vue-elctron</h1>
+    </v-row>
     <v-row class="text-center">
       <v-col cols="12">
         <v-img
