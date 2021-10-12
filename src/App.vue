@@ -5,52 +5,93 @@
       color="primary"
       dark
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      tester
     </v-app-bar>
-
     <v-main>
-      <router-view/>
+      <v-container fluid>
+        <v-card>
+          <v-toolbar
+            color="accent"
+            dark
+            dense
+          >
+            connect
+          </v-toolbar>
+          <v-card-text>
+            text
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn
+              color="success"
+              @click="serverOpen"
+            >
+              열기
+            </v-btn>
+            <v-btn
+              color="error"
+              @click="serverClose"
+            >
+              닫기
+            </v-btn>
+            <v-btn @click="fileSave">
+              File Create
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Component, Vue } from 'vue-property-decorator'
+import net from 'net'
+import fs from 'fs'
+import { ipcRenderer } from 'electron'
 
-export default Vue.extend({
-  name: 'App',
+  @Component
+export default class App extends Vue {
+  server: net.Server | null = null
 
-  data: () => ({
+  created () {
+    // this.server = net.createServer((socket: net.Socket) => {
+    //   console.log('connected')
+    //   socket.on('data', (data) => {
+    //     console.log(data)
+    //   })
+    //   socket.on('close', () => {
+    //     console.log('closed')
+    //   })
+    // })
+
+    // this.server.on('error', (err) => {
+    //   throw err
+    // })
+    // this.server.listen(8124, () => {
+    //   console.log('server bound')
+    // })
+
+    console.log(window.ipcRenderer)
+    // ipcRenderer.on('asynchronous-reply', (event, arg) => {
+    //   console.log(arg) // prints "pong"
+    // })
+  }
+
+  fileSave () {
+    fs.writeFileSync('test.txt', 'yoonki.kim')
+  }
+
+  serverOpen () {
+    ipcRenderer.send('asynchronous-message', 'ping')
+  }
+
+  serverClose () {
     //
-  })
-})
+  }
+}
 </script>
+
+<style scoped>
+
+</style>

@@ -2,6 +2,9 @@ module.exports = {
   transpileDependencies: [
     'vuetify'
   ],
+  configureWebpack: {
+    devtool: 'source-map'
+  },
   pluginOptions: {
     electronBuilder: {
       builderOptions: {
@@ -21,7 +24,9 @@ module.exports = {
             }
           ]
         }
-      }
+      },
+      // nodeIntegration: true // Be Careful!! SECURITY,
+      preload: 'src/preload.ts'
     }
   }
 }
