@@ -46,44 +46,19 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import net from 'net'
-import fs from 'fs'
-import { ipcRenderer } from 'electron'
 
   @Component
 export default class App extends Vue {
-  server: net.Server | null = null
-
   created () {
-    // this.server = net.createServer((socket: net.Socket) => {
-    //   console.log('connected')
-    //   socket.on('data', (data) => {
-    //     console.log(data)
-    //   })
-    //   socket.on('close', () => {
-    //     console.log('closed')
-    //   })
-    // })
-
-    // this.server.on('error', (err) => {
-    //   throw err
-    // })
-    // this.server.listen(8124, () => {
-    //   console.log('server bound')
-    // })
-
-    console.log(window.ipcRenderer)
-    // ipcRenderer.on('asynchronous-reply', (event, arg) => {
-    //   console.log(arg) // prints "pong"
-    // })
+    console.log('debug here...', window.ipcRenderer)
   }
 
   fileSave () {
-    fs.writeFileSync('test.txt', 'yoonki.kim')
+    //
   }
 
   serverOpen () {
-    ipcRenderer.send('asynchronous-message', 'ping')
+    //
   }
 
   serverClose () {

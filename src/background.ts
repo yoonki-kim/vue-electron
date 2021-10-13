@@ -83,7 +83,7 @@ if (isDevelopment) {
   }
 }
 
-console.log('background ...')
+console.log('background here ...')
 
 ipcMain.on('asynchronous-message', (event, arg) => {
   console.log(arg) // prints "ping"

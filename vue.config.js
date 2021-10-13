@@ -25,7 +25,7 @@ module.exports = {
           ]
         }
       },
-      // nodeIntegration: true // Be Careful!! SECURITY,
+      // nodeIntegration: true, // Be Careful!! SECURITY
       preload: 'src/preload.ts'
     }
   }
