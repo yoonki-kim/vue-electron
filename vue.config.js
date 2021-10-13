@@ -7,6 +7,8 @@ module.exports = {
   },
   pluginOptions: {
     electronBuilder: {
+      nodeIntegration: true, // Be Careful!! SECURITY
+      preload: 'src/preload.ts',
       builderOptions: {
         // options placed here will be merged with default configuration and passed to electron-builder
         appId: 'com.andantesys.vue-electron',
@@ -24,9 +26,7 @@ module.exports = {
             }
           ]
         }
-      },
-      // nodeIntegration: true, // Be Careful!! SECURITY
-      preload: 'src/preload.ts'
+      }
     }
   }
 }
